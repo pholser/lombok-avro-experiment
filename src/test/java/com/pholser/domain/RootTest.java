@@ -1,7 +1,5 @@
-package com.pholser.domain.domain;
+package com.pholser.domain;
 
-import com.pholser.domain.Child;
-import com.pholser.domain.Root;
 import org.junit.jupiter.api.Test;
 
 import static com.pholser.domain.Rating.*;
