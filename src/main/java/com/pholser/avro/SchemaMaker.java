@@ -1,24 +1,30 @@
 package com.pholser.avro;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.avro.AvroFactory;
+import com.fasterxml.jackson.dataformat.avro.AvroMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroSchema;
-import com.fasterxml.jackson.dataformat.avro.schema.AvroSchemaGenerator;
-import com.pholser.domain.Root;
-import org.apache.avro.Schema;
 
 import java.io.IOException;
 
-public class SchemaMaker {
-    public String emit(Class<?> type) throws IOException {
-        ObjectMapper mapper = new ObjectMapper(new AvroFactory());
-        AvroSchemaGenerator gen = new AvroSchemaGenerator();
+class SchemaMaker<T> {
+    private final Class<T> type;
+    private final AvroMapper avro;
+    private final AvroSchema schema;
 
-        mapper.acceptJsonFormatVisitor(type, gen);
+    SchemaMaker(Class<T> type) throws IOException {
+        this.type = type;
+        avro = new AvroMapper();
+        schema = avro.schemaFor(type);
+    }
 
-        AvroSchema schemaWrapper = gen.getGeneratedSchema();
-        Schema avroSchema = schemaWrapper.getAvroSchema();
+    String emit() {
+        return schema.getAvroSchema().toString(true);
+    }
 
-        return avroSchema.toString(true);
+    byte[] write(T cooked) throws IOException {
+        return avro.writer(schema).writeValueAsBytes(cooked);
+    }
+
+    T read(byte[] raw) throws IOException {
+        return avro.readerFor(type).with(schema).readValue(raw);
     }
 }
