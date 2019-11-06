@@ -5,12 +5,12 @@ import com.fasterxml.jackson.dataformat.avro.AvroSchema;
 
 import java.io.IOException;
 
-class SchemaMaker<T> {
+class BinarySchema<T> {
     private final Class<T> type;
     private final AvroMapper avro;
     private final AvroSchema schema;
 
-    SchemaMaker(Class<T> type) throws IOException {
+    BinarySchema(Class<T> type) throws IOException {
         this.type = type;
         avro = new AvroMapper();
         schema = avro.schemaFor(type);

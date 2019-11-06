@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Test;
 import static com.pholser.domain.Rating.*;
 import static org.assertj.core.api.Assertions.*;
 
-class SchemaMakerTest {
-    private SchemaMaker<Root> schemaMaker;
+class BinarySchemaTest {
+    private BinarySchema<Root> binarySchema;
 
     @BeforeEach void setUp() throws Exception {
-        schemaMaker = new SchemaMaker<>(Root.class);
+        binarySchema = new BinarySchema<>(Root.class);
     }
 
     @Test void emitRootSchema() {
-        String schema = schemaMaker.emit();
+        String schema = binarySchema.emit();
 
         assertThat(schema)
             .contains("\"namespace\" : \"com.pholser.domain\"");
@@ -26,14 +26,15 @@ class SchemaMakerTest {
         Root original =
             Root.builder()
                 .x(123)
-                .child(Child.builder()
-                    .s("asdf")
-                    .rating(TV_14)
-                    .build())
+                .child(
+                    Child.builder()
+                        .s("asdf")
+                        .rating(TV_14)
+                        .build())
                 .build();
 
-        byte[] raw = schemaMaker.write(original);
-        Root cooked = schemaMaker.read(raw);
+        byte[] raw = binarySchema.write(original);
+        Root cooked = binarySchema.read(raw);
 
         assertThat(cooked).isEqualTo(original);
     }
