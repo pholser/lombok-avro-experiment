@@ -1,5 +1,6 @@
 package com.pholser.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +19,9 @@ import static lombok.AccessLevel.*;
 @ToString
 public class Root {
     @Getter
-    @Setter(PACKAGE)
     private int x;
 
     @Getter
-    @Setter(PACKAGE)
+    @JsonProperty(required = true)
     private Child child;
 }

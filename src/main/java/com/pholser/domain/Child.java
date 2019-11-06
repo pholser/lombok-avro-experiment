@@ -1,5 +1,6 @@
 package com.pholser.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,10 +20,9 @@ import static lombok.AccessLevel.*;
 @ToString
 public class Child {
     @Getter
-    @Setter(PACKAGE)
     private String s;
 
     @Getter
-    @Setter(PACKAGE)
+    @JsonProperty(required = true)
     private Rating rating;
 }
