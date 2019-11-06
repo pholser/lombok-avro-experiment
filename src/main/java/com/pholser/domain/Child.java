@@ -8,7 +8,7 @@ import lombok.Value;
 
 @Value
 @Builder
-@JsonDeserialize(builder = Child.Builder.class)
+@JsonDeserialize(builder = Child.ChildBuilder.class)
 public class Child {
     String s;
 
@@ -16,6 +16,6 @@ public class Child {
     Rating rating;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class Builder {
+    public static class ChildBuilder {
     }
 }

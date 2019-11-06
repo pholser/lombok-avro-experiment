@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 class RootTest {
     @Test void showMethods() {
-        Arrays.stream(Root.class.getDeclaredMethods())
+        Arrays.stream(Root.RootBuilder.class.getDeclaredMethods())
             .forEach(System.out::println);
     }
 }
