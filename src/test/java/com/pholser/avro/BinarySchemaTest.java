@@ -5,8 +5,6 @@ import com.pholser.domain.Root;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 import static com.pholser.domain.Rating.*;
 import static org.assertj.core.api.Assertions.*;
 
