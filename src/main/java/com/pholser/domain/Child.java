@@ -1,21 +1,18 @@
 package com.pholser.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Value
+@Getter
 @Builder
-@JsonDeserialize(builder = Child.ChildBuilder.class)
+@EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Child {
     String s;
-
-    @JsonProperty(required = true)
     Rating rating;
-
-    @JsonPOJOBuilder(withPrefix = "")
-    public static class ChildBuilder {
-    }
 }

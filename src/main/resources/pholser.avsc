@@ -1,0 +1,33 @@
+{
+  "type" : "record",
+  "name" : "Root",
+  "namespace" : "com.pholser.domain",
+  "fields" : [ {
+    "name" : "x",
+    "type" : "int"
+  }, {
+    "name" : "d",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  }, {
+    "name" : "child",
+    "type" : {
+      "type" : "record",
+      "name" : "Child",
+      "fields" : [ {
+        "name" : "s",
+        "type" : "string"
+      }, {
+        "name" : "rating",
+        "type" : {
+          "type" : "enum",
+          "name" : "Rating",
+          "symbols" : [ "TV_Y", "TV_Y7", "TV_G", "TV_PG", "TV_14", "TV_MA" ]
+        }
+      } ]
+    }
+  } ]
+}

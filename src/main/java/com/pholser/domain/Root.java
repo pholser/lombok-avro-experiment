@@ -1,21 +1,26 @@
 package com.pholser.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.apache.avro.reflect.Nullable;
 
-@Value
+import java.time.LocalDate;
+
+@Getter
 @Builder
-@JsonDeserialize(builder = Root.RootBuilder.class)
+@EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Root {
     int x;
 
-    @JsonProperty(required = true)
-    Child child;
+    @Nullable
+    LocalDate d;
 
-    @JsonPOJOBuilder(withPrefix = "")
-    public static class RootBuilder {
-    }
+    Child child;
 }

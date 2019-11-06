@@ -5,13 +5,15 @@ import com.pholser.domain.Root;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static com.pholser.domain.Rating.*;
 import static org.assertj.core.api.Assertions.*;
 
 class BinarySchemaTest {
     private BinarySchema<Root> binarySchema;
 
-    @BeforeEach void setUp() throws Exception {
+    @BeforeEach void setUp() {
         binarySchema = new BinarySchema<>(Root.class);
     }
 
